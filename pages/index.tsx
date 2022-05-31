@@ -1,6 +1,17 @@
-import Head from 'next/head'
+import Head from "next/head";
+import Link from "next/link";
+import { getSortedPostsData } from "../lib/posts";
 
-export default function Home() {
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+}
+
+export default function Home({ allPostsData }) {
   return (
     <div className="container">
       <Head>
@@ -46,6 +57,25 @@ export default function Home() {
             </p>
           </a>
         </div>
+
+        <h1 className="title">
+          Read{" "}
+          <Link href="/piano-note-flashcard">
+            <a>this page!</a>
+          </Link>
+        </h1>
+
+        <section>
+          <h2>Blog</h2>
+          <ul>
+            {allPostsData.map(({ id, date, title }) => (
+              <li key={id}>
+                <h3>{title}</h3>
+                <div>{date}</div>
+              </li>
+            ))}
+          </ul>
+        </section>
       </main>
 
       <footer>
@@ -54,8 +84,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className="logo" />
+          Powered by <img src="/vercel.svg" alt="Vercel" className="logo" />
         </a>
       </footer>
 
@@ -205,5 +234,5 @@ export default function Home() {
         }
       `}</style>
     </div>
-  )
+  );
 }
