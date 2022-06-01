@@ -43,8 +43,11 @@ export function getAllPostsId(): {
   }));
 }
 
-export async function getPostData(id: string): Promise<PostData> {
-  const postContent = fs.readFileSync(path.resolve(postsPath, id));
+export async function getPostData(id: string | string[]): Promise<PostData> {
+  if (id instanceof Array) {
+    id = id[0];
+  }
+  const postContent = fs.readFileSync(path.resolve(postsPath, id + ".md"));
   const matterResult = matter(postContent);
   const htmlContent = await remark().use(remarkHtml).process(postContent);
   return {

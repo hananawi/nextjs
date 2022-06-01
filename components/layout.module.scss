@@ -1,5 +1,18 @@
 .container {
   max-width: 36rem;
-  padding: 0 1rem;
-  margin: 3rem auto 6rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 1rem;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
 }

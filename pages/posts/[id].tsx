@@ -1,5 +1,6 @@
 import Layout from "../../components/layout";
 import { getAllPostsId, getPostData, PostData } from "../../lib/posts";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 export default function Post({ postData }: { postData: PostData }) {
   return (
@@ -11,17 +12,17 @@ export default function Post({ postData }: { postData: PostData }) {
   );
 }
 
-export function getStaticPath() {
+export const getStaticPaths: GetStaticPaths = () => {
   return {
-    path: getAllPostsId(),
+    paths: getAllPostsId(),
     fallback: false,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       postData: await getPostData(params.id),
     },
   };
-}
+};

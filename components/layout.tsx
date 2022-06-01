@@ -20,7 +20,7 @@ export default function Layout({ children }) {
         <meta name="og:url" content="" />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      {children}
+      <main>{children}</main>
       <h2>
         <Link href="/">
           <a>Back to home</a>

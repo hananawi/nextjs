@@ -1,41 +1,80 @@
-.noteContainer {
-  width: 50%;
-  min-width: 400px;
-  margin: auto 0;
-  padding: 30px;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  text-align: center;
+  font-size: 2em;
 
-  .progressBar {
-    --duration: 1s;
+  // like height: 100%, but this case it container is flex
+  flex-grow: 1;
 
-    width: 100%;
-    height: 1em;
-    border-radius: 10px;
-    border: 1px solid #000;
+  .noteContainer {
+    width: 50%;
+    min-width: 400px;
+    margin: 0 auto;
+    padding: 30px;
 
-    &::before {
-      content: "";
-      display: block;
-      width: 0;
-      height: 100%;
-      background-color: aquamarine;
+    .progressBar {
+      --duration: 1s;
+
+      width: 100%;
+      height: 1em;
       border-radius: 10px;
-    }
+      border: 1px solid #000;
 
-    &.active::before {
-      // animation: progress 1s linear 0 infinite normal none;
-      animation-name: progress;
-      animation-duration: var(--duration);
-      animation-timing-function: linear;
-      animation-delay: 0s;
-      animation-iteration-count: infinite;
-      animation-direction: normal;
-      animation-fill-mode: none;
+      &::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 100%;
+        background-color: aquamarine;
+        border-radius: 10px;
+      }
+
+      &.active::before {
+        // animation: progress 1s linear 0 infinite normal none;
+        animation-name: progress;
+        animation-duration: var(--duration);
+        animation-timing-function: linear;
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+        animation-fill-mode: none;
+      }
     }
   }
-}
 
-button.forbidden {
-  cursor: not-allowed;
+  button {
+    font-size: inherit;
+    line-height: 1em;
+    border: none;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+
+  button:hover {
+    opacity: 0.6;
+  }
+
+  button:active {
+    transform: scale(0.8);
+  }
+
+  button.round {
+    background-color: #26de81;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+  }
+
+  button.forbidden {
+    cursor: not-allowed;
+  }
+
+  select {
+    font-size: inherit;
+  }
 }
 
 @keyframes progress {
